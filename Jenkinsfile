@@ -20,10 +20,11 @@ pipeline {
             steps {
                 withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws_jenkins']]) {
                     sh 'echo "=================Terraform Init=================="'
-                    sh 'terraform init'
-                }
-            }
+                    sh 'rm -rf .terraform && rm -f .terraform.lock.hcl'  // 🔥 Remove cached Terraform dependencies
+                    sh 'terraform init -upgrade'  // 🔄 Reinstall providers
         }
+    }
+}
 
         stage('Terraform Plan') {
             when {
