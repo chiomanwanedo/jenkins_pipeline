@@ -15,7 +15,7 @@ pipeline {
 
                 // Clone the Git repository
                 git branch: 'main',
-                    url: 'https://github.com/chiomanwanedo/jenkins_pipeline.git'
+                    url: 'https://github.com/chiomanwanedo/terraform_aws.git'
 
                 sh "ls -lart"
             }
